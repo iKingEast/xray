@@ -321,7 +321,7 @@ EOF
     systemctl enable xray.service
     sed -i "s/User=nobody/User=root/;" /etc/systemd/system/xray.service
     systemctl daemon-reload
-    ~/.acme.sh/acme.sh  --installcert  -d  $your_domain   \
+    ~/.acme.sh/acme.sh  --installcert  -d  ${your_domain}_ecc   \
         --key-file   /usr/local/etc/xray/cert/private.key \
         --fullchain-file  /usr/local/etc/xray/cert/fullchain.cer \
         --reloadcmd  "chmod -R 777 /usr/local/etc/xray/cert && systemctl restart xray.service"
