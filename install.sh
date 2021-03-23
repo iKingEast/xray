@@ -194,7 +194,7 @@ EOF
     green "$(date +"%Y-%m-%d %H:%M:%S") - 使用acme.sh申请https证书."
     curl https://get.acme.sh | sh
     ~/.acme.sh/acme.sh  --issue  -d $your_domain  -w /usr/share/nginx/html/ --keylength ec-256 --force
-    if test -s /root/.acme.sh/$your_domain_ecc/fullchain.cer; then
+    if test -s /root/.acme.sh/${your_domain}_ecc/fullchain.cer; then
         green "$(date +"%Y-%m-%d %H:%M:%S") - 申请https证书成功."
     else
         cert_failed="1"
