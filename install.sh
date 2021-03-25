@@ -178,7 +178,7 @@ cat > /etc/nginx/conf.d/default.conf<<-EOF
     server_name  $your_domain;
     root /usr/share/nginx/html/;
     index index.php index.html;
-    rewrite ^(.*)$  https://\$host\$1 permanent; 
+    #rewrite ^(.*)$  https://\$host\$1 permanent; 
 }
 EOF
     green "$(date +"%Y-%m-%d %H:%M:%S") ==== 检测nginx配置文件"
