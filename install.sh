@@ -161,24 +161,20 @@ EOF
 
 cat > /etc/nginx/conf.d/default.conf<<-EOF
  server {
-    listen       127.0.0.1:37212;
-    server_name  $your_domain;
+    listen 127.0.0.1:37212 proxy_protocol;
+    listen 127.0.0.1:37213 http2 proxy_protocol;
+    set_real_ip_from 127.0.0.1;
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always; #启用HSTS
+    server_name  giacn.tk;
     root /usr/share/nginx/html;
     index index.php index.html index.htm;
 }
- server {
-    listen       127.0.0.1:37213 http2;
-    server_name  $your_domain;
-    root /usr/share/nginx/html;
-    index index.php index.html index.htm;
-}
-    
  server { 
-    listen       0.0.0.0:80;
-    server_name  $your_domain;
+    listen 0.0.0.0:80;
+    server_name  giacn.tk;
     root /usr/share/nginx/html/;
     index index.php index.html;
-    #rewrite ^(.*)$  https://\$host\$1 permanent; 
+    #return 301 https://$host$request_uri;
 }
 EOF
     green "$(date +"%Y-%m-%d %H:%M:%S") ==== 检测nginx配置文件"
